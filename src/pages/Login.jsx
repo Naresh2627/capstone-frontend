@@ -15,7 +15,7 @@ const schema = yup.object({
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
-  const { login, isAuthenticated } = useAuth()
+  const { login, loginWithGoogle, isAuthenticated } = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
 
@@ -31,7 +31,7 @@ const Login = () => {
 
   // Redirect if already authenticated
   if (isAuthenticated) {
-    navigate(from, { replace: true })
+    setTimeout(() => navigate(from, { replace: true }), 0)
     return null
   }
 
@@ -47,8 +47,12 @@ const Login = () => {
     }
   }
 
-  const handleGoogleLogin = () => {
-    window.location.href = `${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/auth/google`
+  const handleGoogleLogin = async () => {
+    try {
+      await loginWithGoogle()
+    } catch (error) {
+      // Error handled by AuthContext
+    }
   }
 
   return (

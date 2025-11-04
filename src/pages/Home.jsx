@@ -12,9 +12,22 @@ const Home = () => {
 
   const { data, isLoading, error } = useQuery(
     ['posts', { page, search }],
-    () => postsAPI.getAllPosts({ page, limit: 10, search }),
+    async () => {
+      console.log('React Query: Fetching posts...')
+      try {
+        const result = await postsAPI.getAllPosts({ page, limit: 10, search })
+        console.log('React Query: Posts fetched successfully:', result)
+        return result
+      } catch (err) {
+        console.error('React Query: Error fetching posts:', err)
+        throw err
+      }
+    },
     {
-      keepPreviousData: true
+      keepPreviousData: true,
+      onError: (err) => {
+        console.error('React Query onError:', err)
+      }
     }
   )
 

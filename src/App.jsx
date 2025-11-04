@@ -10,6 +10,7 @@ import EditPost from './pages/EditPost'
 import PostDetail from './pages/PostDetail'
 import Profile from './pages/Profile'
 import AuthSuccess from './pages/AuthSuccess'
+import AuthCallback from './pages/AuthCallback'
 import ProtectedRoute from './components/ProtectedRoute'
 import LoadingSpinner from './components/LoadingSpinner'
 
@@ -33,6 +34,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/auth/success" element={<AuthSuccess />} />
+          <Route path="/auth/callback" element={<AuthCallback />} />
           <Route path="/post/:id" element={<PostDetail />} />
           <Route path="/profile/:id" element={<Profile />} />
           

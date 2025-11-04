@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
-import { PenTool, User, LogOut, Home, Plus } from 'lucide-react'
+import { PenTool, LogOut, Home } from 'lucide-react'
 
 const Navbar = () => {
   const { user, isAuthenticated, logout } = useAuth()
@@ -39,32 +39,12 @@ const Navbar = () => {
                 >
                   Dashboard
                 </Link>
-                <Link 
-                  to="/create-post" 
-                  className="flex items-center space-x-1 btn btn-primary"
-                >
-                  <Plus className="h-4 w-4" />
-                  <span>New Post</span>
-                </Link>
                 
                 {/* User Menu */}
                 <div className="flex items-center space-x-3">
-                  <div className="flex items-center space-x-2">
-                    {user?.avatar_url ? (
-                      <img 
-                        src={user.avatar_url} 
-                        alt={user.name}
-                        className="h-8 w-8 rounded-full"
-                      />
-                    ) : (
-                      <div className="h-8 w-8 bg-gray-300 rounded-full flex items-center justify-center">
-                        <User className="h-4 w-4 text-gray-600" />
-                      </div>
-                    )}
-                    <span className="text-sm font-medium text-gray-700">
-                      {user?.name}
-                    </span>
-                  </div>
+                  <span className="text-sm font-medium text-gray-700">
+                    {user?.name}
+                  </span>
                   <button
                     onClick={handleLogout}
                     className="flex items-center space-x-1 text-gray-600 hover:text-gray-900 transition-colors"
